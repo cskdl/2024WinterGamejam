@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 82590071}
   - component: {fileID: 82590072}
   m_Layer: 0
-  m_Name: SocreManager
+  m_Name: ClearPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
