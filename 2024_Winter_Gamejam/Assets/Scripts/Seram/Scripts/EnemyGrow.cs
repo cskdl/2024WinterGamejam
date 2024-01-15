@@ -10,9 +10,8 @@ public class EnemyGrow : MonoBehaviour
     {
         if (other.gameObject.CompareTag("food"))
         {
-            Destroy(other.gameObject,0.02f);
+            Destroy(other.gameObject, 0.02f);
             enemyTail.AddTail();
         }
     }
 }
-    
