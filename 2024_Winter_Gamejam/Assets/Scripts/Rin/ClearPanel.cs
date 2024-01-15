@@ -8,6 +8,7 @@ public class ClearPanel : MonoBehaviour
 {
     [SerializeField]
     public Text Text_clearPanel;
+
     private void Awake()
     {
         transform.gameObject.SetActive(true);
@@ -15,11 +16,14 @@ public class ClearPanel : MonoBehaviour
     public void Show()
     {
         Debug.Log("Move");
-        transform.gameObject.SetActive(true); 
+
+        transform.gameObject.SetActive(true);
 
         int score = FindObjectOfType<ScoreText>().GetScore();
         int highScore = FindObjectOfType<ScoreText>().GetHighScore();
 
+        Debug.Log(score);
+        Debug.Log(highScore);
 
         Text_clearPanel.text =
             "HighScore : " + highScore.ToString() + "\n" +
@@ -28,6 +32,10 @@ public class ClearPanel : MonoBehaviour
 
     }
 
+    public void Start()
+    {
+        Show();
+    }
     public void OnClick_Retry()
     {
         //SceneManager.LoadScene("GameScene"); 
