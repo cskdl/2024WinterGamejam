@@ -1,22 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class SetVolume : MonoBehaviour
+public class SetVolume: MonoBehaviour
 {
+    public AudioMixer masterMixer;
+    public Slider audioSlider;
 
-    public AudioMixer mixer;
-    public Slider slider;
-
-    void Start()
+    public void Audiocontrol()
     {
-        slider.value = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
+        float sound = audioSlider.value;
+        if (sound == -40f) masterMixer.SetFloat("BGM", -80);
+        else masterMixer.SetFloat("BGM", sound);
     }
-    public void SetLevel(float sliderValue)
+
+    public void ToggleAudioVolume()
     {
-        mixer.SetFloat("MusicVolume", Mathf.Log10(sliderValue) * 20);
-        PlayerPrefs.SetFloat("MusicVolume", sliderValue);
+        AudioListener.volume = AudioListener.volume == 0 ? 1 : 0;
     }
 }
