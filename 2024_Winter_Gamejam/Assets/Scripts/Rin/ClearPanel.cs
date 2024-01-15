@@ -6,12 +6,13 @@ using UnityEngine.UI;
 
 public class ClearPanel : MonoBehaviour
 {
+    [SerializeField]
     public Text Text_clearPanel;
     private void Awake()
     {
         transform.gameObject.SetActive(true);
     }
-    public void Start()
+    public void Show()
     {
         Debug.Log("Move");
         transform.gameObject.SetActive(true); 

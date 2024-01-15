@@ -16,9 +16,14 @@ public class ScoreText : MonoBehaviour
     private void AddScore()
     {
         //여의주하고 시간에 따라 스코어 증가하는 코드 작성 요망
-        score++;
+        Debug.Log(score);
         ScoreTextAcc();
 
+    }
+
+    private void Start()
+    {
+        AddScore();
     }
     private void ScoreTextAcc()
     {
