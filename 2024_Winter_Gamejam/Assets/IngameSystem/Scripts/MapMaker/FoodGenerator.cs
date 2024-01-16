@@ -40,7 +40,11 @@ public class FoodGenerator : MonoBehaviour
             {
                 m_foods[i].SetActive(true);
             }
-            else if(m_foods[i].activeSelf)
+            else if((m_foodPoses[i].x < m_mapGenerator.RecordedChunk.x * m_mapGenerator.ChunkSize - (m_mapGenerator.ChunkSize * 3 / 2)
+                || m_foodPoses[i].x > m_mapGenerator.RecordedChunk.x * m_mapGenerator.ChunkSize + (m_mapGenerator.ChunkSize * 3 / 2)
+                || m_foodPoses[i].y < m_mapGenerator.RecordedChunk.y * m_mapGenerator.ChunkSize - (m_mapGenerator.ChunkSize * 3 / 2)
+                || m_foodPoses[i].y > m_mapGenerator.RecordedChunk.y * m_mapGenerator.ChunkSize + (m_mapGenerator.ChunkSize * 3 / 2) + 1)
+                && m_foods[i].activeSelf)
             {
                 m_foods[i].SetActive(false);
             }
@@ -91,13 +95,13 @@ public class FoodGenerator : MonoBehaviour
         }
     }
 
-    public void RemoveFood(Vector3 pPosition)
+    public void RemoveFood(GameObject pFood)
     {
-        if (!m_foodPoses.Contains(pPosition))
+        if (!m_foodPoses.Contains(pFood.transform.position))
         {
             return;
         }
-        int index = m_foodPoses.FindIndex(0, m_foodPoses.Count, n => n.Equals(pPosition));
+        int index = m_foodPoses.FindIndex(0, m_foodPoses.Count, n => n.Equals(pFood.transform.position));
         m_foodPoses.RemoveAt(index);
         m_foods.RemoveAt(index);
     }

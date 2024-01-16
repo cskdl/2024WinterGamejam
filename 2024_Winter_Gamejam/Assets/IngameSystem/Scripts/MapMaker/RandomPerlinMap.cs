@@ -13,7 +13,7 @@ public class RandomPerlinMap : MonoBehaviour
     [SerializeField] private TileBase[] m_tileBases = new TileBase[2];
     [SerializeField] private FoodGenerator m_foodGenerator;
 
-    public int ChunkSize { get; private set; } = 20;
+    public int ChunkSize { get; private set; } = 24;
 
     private float m_magnification = 7.0f;
     private int m_offsetX = 0;
@@ -80,15 +80,15 @@ public class RandomPerlinMap : MonoBehaviour
     private void GenerateMap()
     {
         var camPos = Camera.main.transform.position;
-        if (RecordedChunk != new Vector3Int((int)camPos.x / ChunkSize, (int)camPos.y / ChunkSize))
+        if (RecordedChunk != new Vector3Int((int)camPos.x / ChunkSize * 2, (int)camPos.y / ChunkSize * 2))
         {
             camPos.x /= ChunkSize;
             camPos.y /= ChunkSize;
             m_recordedChunks = m_currentChunks.ToList();
             m_currentChunks.Clear();
-            for (int x = (int)camPos.x - 2; x <= (int)camPos.x + 2; x++)
+            for (int x = (int)camPos.x - 1; x <= (int)camPos.x + 1; x++)
             {
-                for (int y = (int)camPos.y - 2; y <= (int)camPos.y + 2; y++)
+                for (int y = (int)camPos.y - 1; y <= (int)camPos.y + 1; y++)
                 {
                     m_currentChunks.Add(new Vector3(x, y));
                     if (m_recordedChunks.Contains(new Vector3(x, y)))
