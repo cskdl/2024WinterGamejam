@@ -7,33 +7,63 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEditor;
 
+//public class SetVolume: MonoBehaviour
+//{
+//    [SerializeField] Slider volumeSlider;
+
+//    void Start()
+//    {
+//        if (!PlayerPrefs.HasKey("musicVolume"))
+//        {
+//            PlayerPrefs.SetFloat("musicVolume", 1);
+//            Load();
+//        }
+//    }
+
+//    public void ChageVolume()
+//    {
+//        AudioListener.volume = volumeSlider.value;
+//        Save();
+//    }
+
+//    private void Load()
+//    {
+//        volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
+
+//    }
+
+//    private void Save()
+//    {
+//        PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
+//    }
+//}
+
 public class SetVolume: MonoBehaviour
 {
-    [SerializeField] Slider volumeSlider;
+    [SerializeField] private AudioMixer m_AudioMixer;
+    [SerializeField] private Slider m_MusicMasterSlider;
+    [SerializeField] private Slider m_MusicBGMSlider;
+    [SerializeField] private Slider m_MusicSFXSlider;
 
-    void Start()
+    private void Awake()
     {
-        if (!PlayerPrefs.HasKey("musicVolume"))
-        {
-            PlayerPrefs.SetFloat("musicVolume", 1);
-            Load();
-        }
+        m_MusicMasterSlider.onValueChanged.AddListener(SetMasterVolume);
+        m_MusicBGMSlider.onValueChanged.AddListener(SetMusicVolume);
+        m_MusicSFXSlider.onValueChanged.AddListener(SetSFXVolume);
     }
 
-    public void ChageVolume()
+    public void SetMasterVolume(float volume)
     {
-        AudioListener.volume = volumeSlider.value;
-        Save();
+        m_AudioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
     }
 
-    private void Load()
+    public void SetMusicVolume(float volume)
     {
-        volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
-
+        m_AudioMixer.SetFloat("BGM", Mathf.Log10(volume) * 20);
     }
 
-    private void Save()
+    public void SetSFXVolume(float volume)
     {
-        PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
+        m_AudioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
     }
 }
