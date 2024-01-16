@@ -35,6 +35,11 @@ public class PlayerManager : MonoBehaviour
         DragonMovement();
     }
 
+    private void LateUpdate()
+    {
+        Camera.main.transform.position = new Vector3(m_dragonBody[0].transform.position.x, m_dragonBody[0].transform.position.y, -10);
+    }
+
     private void DragonMovement()
     {
         if(CountDown > 0)
@@ -53,7 +58,6 @@ public class PlayerManager : MonoBehaviour
         }
 
         m_dragonBody[0].GetComponent<Rigidbody2D>().velocity = m_dragonBody[0].transform.right * m_moveSpeed * Time.deltaTime;
-        Camera.main.transform.position = new Vector3(m_dragonBody[0].transform.position.x, m_dragonBody[0].transform.position.y, -10);
         Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         MousePos.z = 0;
 
@@ -83,6 +87,7 @@ public class PlayerManager : MonoBehaviour
     {
         MarkerManager markManager = m_dragonBody[m_dragonBody.Count - 1].GetComponent<MarkerManager>();
 
+        m_moveSpeed *= 0.975f;
         GameObject temp = Instantiate(m_bodyObj, markManager.MarkerList[0].Position, markManager.MarkerList[0].Rotation);
         if (!temp.GetComponent<MarkerManager>())
         {

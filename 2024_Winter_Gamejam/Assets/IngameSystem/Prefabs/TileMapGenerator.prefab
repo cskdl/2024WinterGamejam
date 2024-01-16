@@ -113,12 +113,12 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 5, y: 5, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
   m_Mode: 0
-  m_DetectChunkCullingBounds: 0
+  m_DetectChunkCullingBounds: 1
   m_MaskInteraction: 0
 --- !u!1 &5574870490546146603
 GameObject:
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_tileBases:
   - {fileID: 11400000, guid: c4c41eda58dc2a447861493104efc9d9, type: 2}
   - {fileID: 11400000, guid: 8b9d1bf7986b3c647b8222163c1287df, type: 2}
+  m_foodGenerator: {fileID: 2497037880928449879}
   m_player: {fileID: 7972497383651515556, guid: fdb30c4fea343164da89b76059ffeeac, type: 3}
 --- !u!156049354 &5574870490546146600
 Grid:
@@ -384,12 +385,12 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 5, y: 5, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
   m_Mode: 0
-  m_DetectChunkCullingBounds: 0
+  m_DetectChunkCullingBounds: 1
   m_MaskInteraction: 0
 --- !u!1 &7607898229388406514
 GameObject:

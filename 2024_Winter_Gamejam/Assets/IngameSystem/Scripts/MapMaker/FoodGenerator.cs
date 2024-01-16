@@ -20,7 +20,6 @@ public class FoodGenerator : MonoBehaviour
     private void Awake()
     {
         m_foodPoses = new List<Vector3>();
-        InitFood();
     }
 
     private void Update()
@@ -33,7 +32,7 @@ public class FoodGenerator : MonoBehaviour
         }
     }
 
-    private void InitFood()
+    public void InitFood()
     {
         int x, y;
         while (m_initialCount > 0)
@@ -42,12 +41,12 @@ public class FoodGenerator : MonoBehaviour
                 m_mapGenerator.RecordedChunk.x * m_mapGenerator.ChunkSize + (m_mapGenerator.ChunkSize / 2) + 1);
             y = Random.Range(m_mapGenerator.RecordedChunk.y * m_mapGenerator.ChunkSize - (m_mapGenerator.ChunkSize / 2),
                 m_mapGenerator.RecordedChunk.y * m_mapGenerator.ChunkSize + (m_mapGenerator.ChunkSize / 2) + 1);
-            if(m_mapGenerator.GetIdUsingPerlin(x, y) != 0 && !m_foodPoses.Contains(new Vector3(x, y)))
+            if (m_mapGenerator.GetIdUsingPerlin(x, y) == 0 && !m_foodPoses.Contains(new Vector3(x, y)))
             {
                 m_initialCount--;
                 m_foodPoses.Add(new Vector3(x, y));
                 GameObject temp = Instantiate(m_foodPrefab, m_foodParent);
-                temp.transform.position = m_backgroundTilemap.LocalToCell(new Vector3Int(x, y));
+                temp.transform.position = m_backgroundTilemap.CellToWorld(new Vector3Int(x, y));
             }
             else
             {
@@ -69,7 +68,7 @@ public class FoodGenerator : MonoBehaviour
             {
                 m_foodPoses.Add(new Vector3(x, y));
                 GameObject temp = Instantiate(m_foodPrefab, m_foodParent);
-                temp.transform.position = new Vector3(x, y);
+                temp.transform.position = m_backgroundTilemap.CellToWorld(new Vector3Int(x, y));
                 break;
             }
         }
