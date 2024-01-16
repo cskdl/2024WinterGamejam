@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IngameScene.unity
     guid: 2bfb94dff664a3948aec20348c6fbb63
+  - enabled: 1
+    path: Assets/Scenes/SoundManagerScene.unity
+    guid: ce7d55ddbd8660647895bb4679267671
+  - enabled: 1
+    path: Assets/Scenes/ClearScene.unity
+    guid: dd086fd87037f3347a0aaa285409dfec
   m_configObjects: {}
