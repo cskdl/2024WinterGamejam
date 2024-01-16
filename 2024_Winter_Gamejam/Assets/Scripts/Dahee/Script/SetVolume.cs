@@ -5,21 +5,35 @@ using UnityEngine.SceneManagement;
 
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class SetVolume: MonoBehaviour
 {
-    public AudioMixer masterMixer;
-    public Slider audioSlider;
+    [SerializeField] Slider volumeSlider;
 
-    public void Audiocontrol()
+    void Start()
     {
-        float sound = audioSlider.value;
-        if (sound == -40f) masterMixer.SetFloat("BGM", -80);
-        else masterMixer.SetFloat("BGM", sound);
+        if (!PlayerPrefs.HasKey("musicVolume"))
+        {
+            PlayerPrefs.SetFloat("musicVolume", 1);
+            Load();
+        }
     }
 
-    public void ToggleAudioVolume()
+    public void ChageVolume()
     {
-        AudioListener.volume = AudioListener.volume == 0 ? 1 : 0;
+        AudioListener.volume = volumeSlider.value;
+        Save();
+    }
+
+    private void Load()
+    {
+        volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
+
+    }
+
+    private void Save()
+    {
+        PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
     }
 }
