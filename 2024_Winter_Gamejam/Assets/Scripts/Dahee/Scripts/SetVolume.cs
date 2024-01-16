@@ -8,34 +8,33 @@ using UnityEngine.UI;
 public class SetVolume : MonoBehaviour
 {
 
-    [SerializeField] Slider volumeSlider;
-
-    void Start()
+    public class AudioMixerController : MonoBehaviour
     {
-        if (!PlayerPrefs.HasKey("musicVolume"))
+        [SerializeField] private AudioMixer m_AudioMixer;
+        [SerializeField] private Slider m_MusicMasterSlider;
+        [SerializeField] private Slider m_MusicBGMSlider;
+        [SerializeField] private Slider m_MusicSFXSlider;
+
+        private void Awake()
         {
-            PlayerPrefs.SetFloat("musicVolume", 1);
-            Load();
+            m_MusicMasterSlider.onValueChanged.AddListener(SetMasterVolume);
+            m_MusicBGMSlider.onValueChanged.AddListener(SetMusicVolume);
+            m_MusicSFXSlider.onValueChanged.AddListener(SetSFXVolume);
         }
-        else
+
+        public void SetMasterVolume(float volume)
         {
-            Load();
-
+            m_AudioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
         }
-    }
 
-    public void ChangeVolume()
-    {
-        AudioListener.volume = volumeSlider.value;
-        Save();
-    }
-    private void Load()
-    {
-        volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
-    }
+        public void SetMusicVolume(float volume)
+        {
+            m_AudioMixer.SetFloat("BGM", Mathf.Log10(volume) * 20);
+        }
 
-    private void Save()
-    {
-        PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
+        public void SetSFXVolume(float volume)
+        {
+            m_AudioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
+        }
     }
 }
