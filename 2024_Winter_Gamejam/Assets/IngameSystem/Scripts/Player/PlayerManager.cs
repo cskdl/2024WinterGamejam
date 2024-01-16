@@ -47,9 +47,25 @@ public class PlayerManager : MonoBehaviour
             if (IsCrashed)
             {
                 m_dragonBody[0].GetComponent<Rigidbody2D>().velocity = m_dragonBody[0].transform.right * -m_moveSpeed / 2 * Time.deltaTime;
+
+                if (m_dragonBody.Count > 1)
+                {
+                    for (int i = 1; i < m_dragonBody.Count; i++)
+                    {
+                        MarkerManager markManager = m_dragonBody[i - 1].GetComponent<MarkerManager>();
+                        if (markManager.MarkerList.Count < 1) continue;
+                        m_dragonBody[i].transform.position = markManager.MarkerList[0].Position;
+                        m_dragonBody[i].transform.rotation = markManager.MarkerList[0].Rotation;
+                        if (markManager.MarkerList.Count > 1)
+                        {
+                            markManager.MarkerList.RemoveAt(0);
+                        }
+                    }
+                }
             }
 
             Camera.main.transform.position = new Vector3(m_dragonBody[0].transform.position.x, m_dragonBody[0].transform.position.y, -10);
+
             return;
         }
         if(CountDown <= 0 && IsCrashed)
