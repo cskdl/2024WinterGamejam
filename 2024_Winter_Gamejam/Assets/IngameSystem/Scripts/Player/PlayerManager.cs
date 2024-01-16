@@ -35,6 +35,11 @@ public class PlayerManager : MonoBehaviour
         DragonMovement();
     }
 
+    private void LateUpdate()
+    {
+        Camera.main.transform.position = new Vector3(m_dragonBody[0].transform.position.x, m_dragonBody[0].transform.position.y, -10);
+    }
+
     private void DragonMovement()
     {
         if(CountDown > 0)
@@ -53,7 +58,6 @@ public class PlayerManager : MonoBehaviour
         }
 
         m_dragonBody[0].GetComponent<Rigidbody2D>().velocity = m_dragonBody[0].transform.right * m_moveSpeed * Time.deltaTime;
-        Camera.main.transform.position = new Vector3(m_dragonBody[0].transform.position.x, m_dragonBody[0].transform.position.y, -10);
         Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         MousePos.z = 0;
 

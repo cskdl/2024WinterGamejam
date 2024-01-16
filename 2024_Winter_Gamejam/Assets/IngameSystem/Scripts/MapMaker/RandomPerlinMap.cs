@@ -11,8 +11,9 @@ public class RandomPerlinMap : MonoBehaviour
     [SerializeField] private Tilemap[] m_tileMaps = new Tilemap[2];
     //[SerializeField] private Sprite[] m_tilemapImg = new Sprite[2];
     [SerializeField] private TileBase[] m_tileBases = new TileBase[2];
+    [SerializeField] private FoodGenerator m_foodGenerator;
 
-    public int ChunkSize { get; private set; } = 30;
+    public int ChunkSize { get; private set; } = 20;
 
     private float m_magnification = 7.0f;
     private int m_offsetX = 0;
@@ -33,6 +34,7 @@ public class RandomPerlinMap : MonoBehaviour
         m_offsetY = Random.Range(-10000, 10000);
         SetPlayer();
         GenerateMapWithoutCheck();
+        m_foodGenerator.InitFood();
     }
 
     private void Update()
@@ -84,9 +86,9 @@ public class RandomPerlinMap : MonoBehaviour
             camPos.y /= ChunkSize;
             m_recordedChunks = m_currentChunks.ToList();
             m_currentChunks.Clear();
-            for (int x = (int)camPos.x - 1; x <= (int)camPos.x + 1; x++)
+            for (int x = (int)camPos.x - 2; x <= (int)camPos.x + 2; x++)
             {
-                for (int y = (int)camPos.y - 1; y <= (int)camPos.y + 1; y++)
+                for (int y = (int)camPos.y - 2; y <= (int)camPos.y + 2; y++)
                 {
                     m_currentChunks.Add(new Vector3(x, y));
                     if (m_recordedChunks.Contains(new Vector3(x, y)))
@@ -96,14 +98,13 @@ public class RandomPerlinMap : MonoBehaviour
                     LoadChunk(x, y);
                 }
             }
-            for(int x = RecordedChunk.x - 1; x <= RecordedChunk.x + 1; x++)
+            for(int x = RecordedChunk.x - 2; x <= RecordedChunk.x + 2; x++)
             {
-                for(int y = RecordedChunk.y - 1; y <= RecordedChunk.y + 1; y++)
+                for(int y = RecordedChunk.y - 2; y <= RecordedChunk.y + 2; y++)
                 {
-                    if (m_currentChunks.Contains(new Vector3(x, y))/* || !m_recordedChunks.Contains(new Vector3(x, y))*/)
+                    if (m_currentChunks.Contains(new Vector3(x, y)))
                         continue;
                     UnloadChunk(x, y);
-                    //m_currentChunk.Remove(new Vector3(x, y));
                 }
             }
             RecordedChunk = new Vector3Int((int)camPos.x, (int)camPos.y);
@@ -131,7 +132,6 @@ public class RandomPerlinMap : MonoBehaviour
         {
             for(int y = pY * (int)ChunkSize - ((int)ChunkSize / 2); y < pY * (int)ChunkSize + ((int)ChunkSize / 2); y++)
             {
-                //m_tilemaps[GetIdUsingPerlin(x, y)].CellToLocal(new Vector3Int(x, y));
                 if(!m_tileMaps[GetIdUsingPerlin(x, y)].HasTile(m_tileMaps[GetIdUsingPerlin(x, y)].LocalToCell(new Vector3Int(x, y))))
                     m_tileMaps[GetIdUsingPerlin(x, y)].SetTile(m_tileMaps[GetIdUsingPerlin(x, y)].LocalToCell(new Vector3Int(x, y)), m_tileBases[GetIdUsingPerlin(x, y)]);
             }
