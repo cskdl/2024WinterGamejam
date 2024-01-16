@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerColliisionCheck : MonoBehaviour
 {
     [SerializeField] private PlayerManager m_playerManager;
+    private FoodGenerator m_foodGenerator;
     private Collider2D m_collider;
     private Rigidbody2D m_playerRigid;
     private bool m_isInBody = false;
@@ -14,6 +15,8 @@ public class PlayerColliisionCheck : MonoBehaviour
     {
         m_collider = GetComponent<Collider2D>();
         m_playerRigid = GetComponent<Rigidbody2D>();
+
+        m_foodGenerator = FindObjectOfType<FoodGenerator>();
     }
 
     //∫Æ & ∏ˆ
@@ -36,8 +39,10 @@ public class PlayerColliisionCheck : MonoBehaviour
         if(collision.gameObject.tag == "DragonBall")
         {
             m_playerManager.CreateBodyParts();
+            m_foodGenerator.RemoveFood(collision.transform.position);
             Destroy(collision.gameObject);
         }
+        //∞≈¿« ∆Û±‚
         else if(collision.gameObject.tag == "Body")
         {
             if (m_isInBody)
@@ -50,6 +55,7 @@ public class PlayerColliisionCheck : MonoBehaviour
         }
     }
 
+    //¿Ã∞Õµµ ∞≈¿« ∆Û±‚,,,
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Body")

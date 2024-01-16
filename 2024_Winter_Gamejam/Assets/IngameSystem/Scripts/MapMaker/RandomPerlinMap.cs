@@ -107,6 +107,7 @@ public class RandomPerlinMap : MonoBehaviour
                     UnloadChunk(x, y);
                 }
             }
+            m_foodGenerator.UpdateFoodCondition();
             RecordedChunk = new Vector3Int((int)camPos.x, (int)camPos.y);
         }
     }

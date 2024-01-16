@@ -15,12 +15,8 @@ public class FoodGenerator : MonoBehaviour
     [SerializeField] private Tilemap m_backgroundTilemap;
 
     private float m_counter = 0;
-    public List<Vector3> m_foodPoses;
-
-    private void Awake()
-    {
-        m_foodPoses = new List<Vector3>();
-    }
+    private List<Vector3> m_foodPoses = new List<Vector3>();
+    private List<GameObject> m_foods = new List<GameObject>();
 
     private void Update()
     {
@@ -29,6 +25,25 @@ public class FoodGenerator : MonoBehaviour
         {
             GenerateFood();
             m_counter = 0;
+        }
+    }
+
+    public void UpdateFoodCondition()
+    {
+        for(int i = 0; i < m_foodPoses.Count; i++)
+        {
+            if (m_foodPoses[i].x >= m_mapGenerator.RecordedChunk.x * m_mapGenerator.ChunkSize - (m_mapGenerator.ChunkSize * 3 / 2)
+                && m_foodPoses[i].x <= m_mapGenerator.RecordedChunk.x * m_mapGenerator.ChunkSize + (m_mapGenerator.ChunkSize * 3 / 2)
+                && m_foodPoses[i].y >= m_mapGenerator.RecordedChunk.y * m_mapGenerator.ChunkSize - (m_mapGenerator.ChunkSize * 3 / 2)
+                && m_foodPoses[i].y <= m_mapGenerator.RecordedChunk.y * m_mapGenerator.ChunkSize + (m_mapGenerator.ChunkSize * 3 / 2) + 1
+                && !m_foods[i].activeSelf)
+            {
+                m_foods[i].SetActive(true);
+            }
+            else if(m_foods[i].activeSelf)
+            {
+                m_foods[i].SetActive(false);
+            }
         }
     }
 
@@ -47,6 +62,7 @@ public class FoodGenerator : MonoBehaviour
                 m_foodPoses.Add(new Vector3(x, y));
                 GameObject temp = Instantiate(m_foodPrefab, m_foodParent);
                 temp.transform.position = m_backgroundTilemap.CellToWorld(new Vector3Int(x, y));
+                m_foods.Add(temp);
             }
             else
             {
@@ -69,8 +85,20 @@ public class FoodGenerator : MonoBehaviour
                 m_foodPoses.Add(new Vector3(x, y));
                 GameObject temp = Instantiate(m_foodPrefab, m_foodParent);
                 temp.transform.position = m_backgroundTilemap.CellToWorld(new Vector3Int(x, y));
+                m_foods.Add(temp);
                 break;
             }
         }
+    }
+
+    public void RemoveFood(Vector3 pPosition)
+    {
+        if (!m_foodPoses.Contains(pPosition))
+        {
+            return;
+        }
+        int index = m_foodPoses.FindIndex(0, m_foodPoses.Count, n => n.Equals(pPosition));
+        m_foodPoses.RemoveAt(index);
+        m_foods.RemoveAt(index);
     }
 }
