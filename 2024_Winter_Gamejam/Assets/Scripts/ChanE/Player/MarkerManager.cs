@@ -18,6 +18,8 @@ public class MarkerManager : MonoBehaviour
 
     public List<Marker> MarkerList = new List<Marker>();
 
+    private int counter = 5;
+
     private void FixedUpdate()
     {
         UpdateMarkerList();
@@ -25,12 +27,18 @@ public class MarkerManager : MonoBehaviour
 
     public void UpdateMarkerList()
     {
-        MarkerList.Add(new Marker(transform.position, transform.rotation));
+        if (counter >= 4 || MarkerList.Count <= 0)
+        {
+            MarkerList.Add(new Marker(transform.position, transform.rotation));
+            counter = 0;
+        }
+        else counter++;
     }
 
     public void ClearMarkerList()
     {
         MarkerList.Clear();
+        counter = 5;
         UpdateMarkerList();
     }
 }
