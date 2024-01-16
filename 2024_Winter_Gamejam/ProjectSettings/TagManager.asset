@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - food
+  - BorderBullet
+  - bullet
   layers:
   - Default
   - TransparentFX
