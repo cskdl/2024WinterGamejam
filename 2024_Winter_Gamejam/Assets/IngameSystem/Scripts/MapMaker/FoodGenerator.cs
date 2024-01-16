@@ -53,20 +53,6 @@ public class FoodGenerator : MonoBehaviour
                 continue;
             }
         }
-
-        //for (x = m_mapGenerator.RecordedChunk.x * m_mapGenerator.ChunkSize - (m_mapGenerator.ChunkSize / 2);
-        //    x < m_mapGenerator.RecordedChunk.x * m_mapGenerator.ChunkSize + (m_mapGenerator.ChunkSize / 2) + 1; x++)
-        //{
-        //    for(y = m_mapGenerator.RecordedChunk.y * m_mapGenerator.ChunkSize - (m_mapGenerator.ChunkSize / 2);
-        //        y < m_mapGenerator.RecordedChunk.y * m_mapGenerator.ChunkSize + (m_mapGenerator.ChunkSize / 2) + 1; y++)
-        //    {
-        //        if(m_mapGenerator.GetIdUsingPerlin(x, y) == 0)
-        //        {
-        //            GameObject temp = Instantiate(m_foodPrefab, m_foodParent);
-        //            temp.transform.position = m_backgroundTilemap.CellToWorld(new Vector3Int(x, y));
-        //        }
-        //    }
-        //}
     }
 
     private void GenerateFood()
