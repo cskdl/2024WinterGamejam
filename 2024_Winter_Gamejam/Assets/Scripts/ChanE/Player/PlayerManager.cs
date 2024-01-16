@@ -11,8 +11,12 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float m_turnSpeed = 180;
     [SerializeField] private List<GameObject> m_dragonBody; //include head
     [SerializeField] private GameObject m_bodyObj;
+    [SerializeField] private Transform m_player;
 
     private float m_countUp = 0;
+
+    //처음 시작할 때 카운트 다운(움직이지 말라고)
+    private float m_countDown = 3;
 
     private void Start()
     {
@@ -25,11 +29,21 @@ public class PlayerManager : MonoBehaviour
         {
             CreateBodyParts();
         }
+        if(m_countDown > 0)
+        {
+            m_countDown -= Time.fixedDeltaTime;
+        }
         DragonMovement();
     }
 
     private void DragonMovement()
     {
+        if(m_countDown > 0)
+        {
+            Camera.main.transform.position = new Vector3(m_dragonBody[0].transform.position.x, m_dragonBody[0].transform.position.y, -10);
+            return;
+        }
+
         m_dragonBody[0].GetComponent<Rigidbody2D>().velocity = m_dragonBody[0].transform.right * m_moveSpeed * Time.deltaTime;
         Camera.main.transform.position = new Vector3(m_dragonBody[0].transform.position.x, m_dragonBody[0].transform.position.y, -10);
         Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -46,9 +60,13 @@ public class PlayerManager : MonoBehaviour
             for(int i = 1; i < m_dragonBody.Count; i++)
             {
                 MarkerManager markManager = m_dragonBody[i - 1].GetComponent<MarkerManager>();
+                if (markManager.MarkerList.Count < 1) continue;
                 m_dragonBody[i].transform.position = markManager.MarkerList[0].Position;
                 m_dragonBody[i].transform.rotation = markManager.MarkerList[0].Rotation;
-                markManager.MarkerList.RemoveAt(0);
+                if (markManager.MarkerList.Count > 1)
+                {
+                    markManager.MarkerList.RemoveAt(0);
+                }
             }
         }
     }
@@ -66,8 +84,11 @@ public class PlayerManager : MonoBehaviour
         {
             temp.AddComponent<Rigidbody2D>();
         }
+        temp.transform.SetParent(m_player);
+        temp.transform.localScale = temp.transform.localScale * m_player.localScale.x;
         m_dragonBody.Add(temp);
-        markManager.ClearMarkerList();
+        if (markManager.MarkerList.Count > 1)
+            markManager.ClearMarkerList();
     }
 
     public void InitBody()

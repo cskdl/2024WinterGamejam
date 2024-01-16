@@ -133,6 +133,7 @@ MonoBehaviour:
   m_dragonBody:
   - {fileID: 4822345672822847898}
   m_bodyObj: {fileID: 8307126133272609043, guid: 01e0d404b7ef40c42a6fc35d96050f84, type: 3}
+  m_player: {fileID: 8498357840556506537}
 --- !u!1 &4822345672822847898
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +145,7 @@ GameObject:
   - component: {fileID: 4822345672822847896}
   - component: {fileID: 4822345672822847899}
   - component: {fileID: 4822345672822847897}
+  - component: {fileID: 8414810529948776315}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -240,6 +242,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &8414810529948776315
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822345672822847898}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.89220196, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.1805451
 --- !u!1 &5362960392906475333
 GameObject:
   m_ObjectHideFlags: 0
