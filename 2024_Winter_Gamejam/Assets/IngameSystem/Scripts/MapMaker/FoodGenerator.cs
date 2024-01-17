@@ -137,7 +137,7 @@ public class FoodGenerator : MonoBehaviour
                 {
                     int index = GetIndexofHelper(m_dragonballHelpers.First(n => n != null && !n.activeSelf));
                     Vector3 camPosViewport = Camera.main.WorldToViewportPoint(Camera.main.transform.position);
-
+                    //if(Camera.main.transform.position)
                 }
             }
             count--;
