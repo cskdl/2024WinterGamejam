@@ -20,7 +20,7 @@ public class TutorialTextDirector : MonoBehaviour
     {
         m_exitInfoText.text = m_exitInfo;
         m_index = 0;
-        m_textOnPlayer.text = m_tutorialTexts[m_index];
+        m_textOnPlayer.text = "곧 시작하니 잠시만 기다료봐~";
     }
 
     // Update is called once per frame
@@ -31,11 +31,11 @@ public class TutorialTextDirector : MonoBehaviour
         if(m_timer >= m_targetTime)
         {
             m_timer = 0;
+            m_textOnPlayer.text = m_tutorialTexts[m_index];
             if(++m_index >= m_tutorialTexts.Length)
             {
                 m_index = 0;
             }
-            m_textOnPlayer.text = m_tutorialTexts[m_index];
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
