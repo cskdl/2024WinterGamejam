@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,16 +15,33 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriter;
 
+    float m_timer = 3;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
     }
 
+    private void Start()
+    {
+        this.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
+        Vector3 temp = transform.position;
+        temp.z = 10;
+        this.transform.position = temp;
+    }
+
     void FixedUpdate()
     {
-        MoveTowardsTarget();
-        LookAtTarget();
+        if (m_timer > 0)
+        {
+            m_timer -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            MoveTowardsTarget();
+            LookAtTarget();
+        }
     }
 
     void MoveTowardsTarget()
@@ -41,6 +59,7 @@ public class Enemy : MonoBehaviour
         Vector3 temp = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y);
         Vector3 targetDir = temp - transform.position;
         float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 }
