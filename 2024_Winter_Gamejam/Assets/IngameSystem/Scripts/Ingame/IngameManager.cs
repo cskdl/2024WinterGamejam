@@ -8,6 +8,8 @@ public class IngameManager : MonoBehaviour
     public int Score { get; private set; } = 0;
 
     [SerializeField] private int m_scorePerSecond = 3;
+    [SerializeField] private LifeSetting m_lifeSetting;
+    [SerializeField] private GameDirector m_gameDirector;
 
     private float m_scoreTimer = 0;
 
@@ -30,6 +32,8 @@ public class IngameManager : MonoBehaviour
     public void UpdateHP(int pDamage = 1)
     {
         PlayerHP -= pDamage;
-        Debug.Log($"HP is now {PlayerHP}");
+        //Debug.Log($"HP is now {PlayerHP}");
+        if(m_lifeSetting != null) m_lifeSetting.playerLife--;
+        if (m_gameDirector != null) m_gameDirector.UpdateLives(m_lifeSetting.playerLife);
     }
 }

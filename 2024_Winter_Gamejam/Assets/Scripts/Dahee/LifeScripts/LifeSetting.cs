@@ -23,11 +23,11 @@ public class LifeSetting : MonoBehaviour
 
     void LifeTest()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            playerLife -= 1;
-            this.gameDirector.UpdateLives(this.playerLife);
-        }
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    playerLife -= 1;
+        //    this.gameDirector.UpdateLives(this.playerLife);
+        //}
 
         if (playerLife <= 0)
         {

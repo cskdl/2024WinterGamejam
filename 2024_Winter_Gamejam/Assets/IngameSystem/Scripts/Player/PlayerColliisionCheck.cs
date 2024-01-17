@@ -61,7 +61,7 @@ public class PlayerColliisionCheck : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("bullet"))
         {
-            if (m_ingameManager != null) m_ingameManager.UpdateHP();
+            //if (m_ingameManager != null) m_ingameManager.UpdateHP();
         }
     }
 
