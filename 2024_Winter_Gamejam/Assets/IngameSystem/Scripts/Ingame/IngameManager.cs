@@ -13,10 +13,12 @@ public class IngameManager : MonoBehaviour
     [SerializeField] private ScoreText m_scoreText;
 
     private float m_scoreTimer = 0;
+    private float m_countDown = 3;
 
     private void Update()
     {
-        m_scoreTimer += Time.deltaTime;
+        if (m_countDown > 0) m_countDown -= Time.deltaTime;
+        if (m_countDown <= 0) m_scoreTimer += Time.deltaTime;
         if(m_scoreTimer >= 1)
         {
             m_scoreTimer = 0;
