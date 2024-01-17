@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -13,10 +14,23 @@ public class FoodGenerator : MonoBehaviour
     [SerializeField] private int m_initialCount = 5;
     [SerializeField] private float m_generationDistance = 3;
     [SerializeField] private Tilemap m_backgroundTilemap;
+    [SerializeField] private GameObject m_dragonballHelperPrefab;
 
     private float m_counter = 0;
     private List<Vector3> m_foodPoses = new List<Vector3>();
     private List<GameObject> m_foods = new List<GameObject>();
+
+    private GameObject[] m_dragonballHelpers;
+    private Vector3[] m_positionHelps = new Vector3[9];
+
+    private void Awake()
+    {
+        m_dragonballHelpers = new GameObject[9] { m_dragonballHelperPrefab, m_dragonballHelperPrefab,
+            m_dragonballHelperPrefab, m_dragonballHelperPrefab,
+            m_dragonballHelperPrefab, m_dragonballHelperPrefab,
+            m_dragonballHelperPrefab,m_dragonballHelperPrefab,
+            m_dragonballHelperPrefab};
+    }
 
     private void Update()
     {
@@ -36,7 +50,7 @@ public class FoodGenerator : MonoBehaviour
                 && m_foodPoses[i].x <= m_mapGenerator.RecordedChunk.x * m_mapGenerator.ChunkSize + (m_mapGenerator.ChunkSize * 3 / 2)
                 && m_foodPoses[i].y >= m_mapGenerator.RecordedChunk.y * m_mapGenerator.ChunkSize - (m_mapGenerator.ChunkSize * 3 / 2)
                 && m_foodPoses[i].y <= m_mapGenerator.RecordedChunk.y * m_mapGenerator.ChunkSize + (m_mapGenerator.ChunkSize * 3 / 2) + 1
-                && !m_foods[i].activeSelf)
+                && m_foods[i] != null && !m_foods[i].activeSelf)
             {
                 m_foods[i].SetActive(true);
             }
@@ -44,7 +58,7 @@ public class FoodGenerator : MonoBehaviour
                 || m_foodPoses[i].x > m_mapGenerator.RecordedChunk.x * m_mapGenerator.ChunkSize + (m_mapGenerator.ChunkSize * 3 / 2)
                 || m_foodPoses[i].y < m_mapGenerator.RecordedChunk.y * m_mapGenerator.ChunkSize - (m_mapGenerator.ChunkSize * 3 / 2)
                 || m_foodPoses[i].y > m_mapGenerator.RecordedChunk.y * m_mapGenerator.ChunkSize + (m_mapGenerator.ChunkSize * 3 / 2) + 1)
-                && m_foods[i].activeSelf)
+                && m_foods[i] != null && m_foods[i].activeSelf)
             {
                 m_foods[i].SetActive(false);
             }
@@ -104,5 +118,40 @@ public class FoodGenerator : MonoBehaviour
         int index = m_foodPoses.FindIndex(0, m_foodPoses.Count, n => n.Equals(pFood.transform.position));
         m_foodPoses.RemoveAt(index);
         m_foods.RemoveAt(index);
+    }
+
+    public void UpdateDragonballHelper()
+    {
+        int count = m_dragonballHelpers.Count(n => n != null && !n.activeSelf);
+
+        while(count > 0)
+        {
+            for(int i = 0; i < m_foods.Count; i++)
+            {
+                if (!m_foods[i].activeSelf)
+                {
+                    continue;
+                }
+                Vector3 pos = Camera.main.WorldToViewportPoint(m_foods[i].transform.position);
+                if(pos.x < 0 || pos.x > 1 || pos.y < 0 || pos.y > 1)
+                {
+                    int index = GetIndexofHelper(m_dragonballHelpers.First(n => n != null && !n.activeSelf));
+                    
+                }
+            }
+            count--;
+        }
+    }
+
+    private int GetIndexofHelper(GameObject pTarget)
+    {
+        for(int i = 0; i < m_dragonballHelpers.Length; i++)
+        {
+            if (m_dragonballHelpers[i].transform.position == pTarget.transform.position)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }
