@@ -102,6 +102,7 @@ public class PlayerManager : MonoBehaviour
     public void CreateBodyParts()
     {
         MarkerManager markManager = m_dragonBody[m_dragonBody.Count - 1].GetComponent<MarkerManager>();
+        if (markManager.MarkerList.Count <= 0) return;
 
         m_moveSpeed *= 1.025f;
         GameObject temp = Instantiate(m_bodyObj, markManager.MarkerList[0].Position, markManager.MarkerList[0].Rotation);
