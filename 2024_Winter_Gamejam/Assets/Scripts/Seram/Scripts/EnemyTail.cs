@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//ав╟М╫м╢ы...........
+
 public class EnemyTail : MonoBehaviour
 {
     public Transform EnemyTailGfx;

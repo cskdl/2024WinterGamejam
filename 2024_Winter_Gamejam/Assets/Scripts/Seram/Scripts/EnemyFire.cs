@@ -22,7 +22,7 @@ public class EnemyFire : MonoBehaviour
         }
     }
 
-    void FireAtCamera()
+    void FireAtCamera() 
     {
         Vector3 direction = (Camera.main.transform.position - transform.position).normalized;
         GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
