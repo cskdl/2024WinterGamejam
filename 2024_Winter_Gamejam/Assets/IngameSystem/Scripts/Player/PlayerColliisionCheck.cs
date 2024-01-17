@@ -7,6 +7,7 @@ public class PlayerColliisionCheck : MonoBehaviour
 {
     [SerializeField] private PlayerManager m_playerManager;
     private FoodGenerator m_foodGenerator;
+    private IngameManager m_ingameManager;
     private Collider2D m_collider;
     private Rigidbody2D m_playerRigid;
     private bool m_isInBody = false;
@@ -17,23 +18,23 @@ public class PlayerColliisionCheck : MonoBehaviour
         m_playerRigid = GetComponent<Rigidbody2D>();
 
         m_foodGenerator = FindObjectOfType<FoodGenerator>();
+        m_ingameManager = FindObjectOfType<IngameManager>();
     }
 
-    //벽 & 몸
+    //벽
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Wall" && !m_playerManager.IsCrashed)
+        if(collision.gameObject.tag == "Wall" && !m_playerManager.IsCrashed && m_playerManager.CountDown <= 0)
         {
-            //무적
-            //Player Manager의 이동 방향 및 속도...까진 없어도 되고 카운트다운 조정(1초 정도?)하고 뒤로 밀리게 하면......?
             m_playerManager.CountDown = 1;
             m_playerManager.IsCrashed = true;
-            //collision.transform.GetComponent<Collider2D>().isTrigger = true;
+
+            m_ingameManager.UpdateHP();
         }
     }
 
 
-    //벽(무적해제용 판정) & 여의주 & 몸통
+    //여의주
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "DragonBall")
@@ -41,31 +42,7 @@ public class PlayerColliisionCheck : MonoBehaviour
             m_playerManager.CreateBodyParts();
             m_foodGenerator.RemoveFood(collision.gameObject);
             Destroy(collision.gameObject);
-        }
-        //거의 폐기
-        else if(collision.gameObject.tag == "Body")
-        {
-            if (m_isInBody)
-            {
-                return;
-            }
-            Debug.Log("아야! 몸에 맞앗어요");
-            m_isInBody = true;
-            m_collider.isTrigger = true;
-        }
-    }
-
-    //이것도 거의 폐기,,,
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Body")
-        {
-            if (!m_isInBody)
-            {
-                return;
-            }
-            m_isInBody = false;
-            m_collider.isTrigger = false;
+            m_ingameManager.UpdateScore();
         }
     }
 }
