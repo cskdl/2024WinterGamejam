@@ -6,6 +6,7 @@ public class EnemyFire : MonoBehaviour
 {
     public GameObject fireballPrefab;
     public float fireballSpeed = 10f;
+    public float initialDelay = 3f;
     public float fireRate = 2f;
 
     private void Start()
@@ -15,16 +16,18 @@ public class EnemyFire : MonoBehaviour
 
     IEnumerator FireRoutine()
     {
+        yield return new WaitForSeconds(initialDelay);
+
         while (true)
         {
-            FireAtCamera();
+            FireAtPlayer();
             yield return new WaitForSeconds(1f / fireRate);
         }
     }
 
-    void FireAtCamera() 
+    void FireAtPlayer()
     {
-        Vector3 direction = (Camera.main.transform.position - transform.position).normalized;
+        Vector3 direction = (FindObjectOfType<PlayerAttack>().transform.position - transform.position).normalized;
         GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
 
         Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();

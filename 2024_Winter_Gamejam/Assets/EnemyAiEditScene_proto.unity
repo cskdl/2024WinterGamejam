@@ -333,7 +333,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: bullet
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6132483009239195426, guid: 01d90b8e637c1594899fbf9f78867007, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 01d90b8e637c1594899fbf9f78867007, type: 3}
 --- !u!1 &341385162
 GameObject:
@@ -504,18 +505,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6702392909663004741, guid: 01d90b8e637c1594899fbf9f78867007, type: 3}
   m_PrefabInstance: {fileID: 315229777}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &419005995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419005991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f25a2e7e05adf14babfac4a1af2cda4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &582116356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,7 +1399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2846532420724259333, guid: 029e49de91eab3640ae7f0aff3c696ae, type: 3}
       propertyPath: fireRate
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2846532420724259333, guid: 029e49de91eab3640ae7f0aff3c696ae, type: 3}
       propertyPath: fireballPrefab

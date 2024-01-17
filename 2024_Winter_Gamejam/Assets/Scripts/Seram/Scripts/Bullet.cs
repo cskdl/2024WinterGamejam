@@ -5,18 +5,17 @@ using UnityEditor;
 
 public class Bullet : MonoBehaviour
 {
-    void Update()
+    public float destroyDelay = 3f; // 파괴될 때까지의 대기 시간
+
+    void Start()
     {
-        CheckIfOutsideCameraView();
+        StartCoroutine(DestroyAfterDelay());
     }
 
-    void CheckIfOutsideCameraView()
+    IEnumerator DestroyAfterDelay()
     {
-        Vector3 screenPoint = Camera.main.WorldToScreenPoint(transform.position);
+        yield return new WaitForSeconds(destroyDelay);
 
-        if (screenPoint.x < 0 || screenPoint.x > Screen.width || screenPoint.y < 0 || screenPoint.y > Screen.height)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }
