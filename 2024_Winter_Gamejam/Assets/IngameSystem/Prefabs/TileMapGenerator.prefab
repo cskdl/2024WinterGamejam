@@ -178,6 +178,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b9d1bf7986b3c647b8222163c1287df, type: 2}
   m_foodGenerator: {fileID: 2497037880928449879}
   m_player: {fileID: 7972497383651515556, guid: fdb30c4fea343164da89b76059ffeeac, type: 3}
+  m_enemy: {fileID: 2846532420724259340, guid: 029e49de91eab3640ae7f0aff3c696ae, type: 3}
 --- !u!156049354 &5574870490546146600
 Grid:
   m_ObjectHideFlags: 0
@@ -208,6 +209,7 @@ MonoBehaviour:
   m_initialCount: 5
   m_generationDistance: 3
   m_backgroundTilemap: {fileID: 5574870490433565512}
+  m_dragonballHelperPrefab: {fileID: 0}
 --- !u!1 &5574870491738093835
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,10 +26,10 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        this.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
-        Vector3 temp = transform.position;
-        temp.z = 10;
-        this.transform.position = temp;
+        //this.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
+        //Vector3 temp = transform.position;
+        //temp.z = 10;
+        //this.transform.position = temp;
         target = GameObject.FindObjectOfType<PlayerAttack>().GetComponent<Rigidbody2D>();
     }
 
