@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class EnemyFire : MonoBehaviour
 {
     public GameObject fireballPrefab;
-    public Transform player;
     public float fireballSpeed = 10f;
     public float fireRate = 2f;
 
@@ -19,15 +17,14 @@ public class EnemyFire : MonoBehaviour
     {
         while (true)
         {
-            FireAtPlayer();
+            FireAtCamera();
             yield return new WaitForSeconds(1f / fireRate);
         }
     }
 
-
-    void FireAtPlayer()
+    void FireAtCamera()
     {
-        Vector3 direction = (player.position - transform.position).normalized;
+        Vector3 direction = (Camera.main.transform.position - transform.position).normalized;
         GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
 
         Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();

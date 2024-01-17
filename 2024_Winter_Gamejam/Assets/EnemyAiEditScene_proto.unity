@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 125401965}
   - component: {fileID: 125401966}
   - component: {fileID: 125401967}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125401958}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: -1.52, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -189,8 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ecdeb7059dd7744da247a5144a9b530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  target: {fileID: 2116451047}
+  speed: 220
 --- !u!50 &125401965
 Rigidbody2D:
   serializedVersion: 4
@@ -240,7 +239,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 419005991}
-  player: {fileID: 2116451048}
   fireballSpeed: 10
   fireRate: 2
 --- !u!1 &246713093
@@ -253,7 +251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 246713094}
   - component: {fileID: 246713095}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyTailGfx
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -811,7 +809,7 @@ GameObject:
   m_Component:
   - component: {fileID: 667757548}
   - component: {fileID: 667757549}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyHeadGfx
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1516,11 +1514,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5574870490546146603, guid: bf6d94dc3d20293449abe2e439211764, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5574870491738093838, guid: bf6d94dc3d20293449abe2e439211764, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf6d94dc3d20293449abe2e439211764, type: 3}
