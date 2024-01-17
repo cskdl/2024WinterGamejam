@@ -122,7 +122,7 @@ public class RandomPerlinMap : MonoBehaviour
         {
             return;
         }
-        Debug.Log($"Distance is now {Vector3.Distance(m_player.transform.GetChild(0).position, m_enemy.transform.position)}! Reset Enemy Position");
+        //Debug.Log($"Distance is now {Vector3.Distance(m_player.transform.GetChild(0).position, m_enemy.transform.position)}! Reset Enemy Position");
         Vector3 playerPos = m_player.transform.GetChild(0).position;
         int x = (int)playerPos.x - (ChunkSize / 3);
         int y = (int)playerPos.y - (ChunkSize / 3);

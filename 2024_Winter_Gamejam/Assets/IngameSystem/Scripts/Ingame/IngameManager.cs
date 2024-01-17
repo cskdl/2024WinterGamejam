@@ -10,6 +10,7 @@ public class IngameManager : MonoBehaviour
     [SerializeField] private int m_scorePerSecond = 3;
     [SerializeField] private LifeSetting m_lifeSetting;
     [SerializeField] private GameDirector m_gameDirector;
+    [SerializeField] private ScoreText m_scoreText;
 
     private float m_scoreTimer = 0;
 
@@ -20,13 +21,15 @@ public class IngameManager : MonoBehaviour
         {
             m_scoreTimer = 0;
             Score += m_scorePerSecond;
+            if (m_scoreText != null) m_scoreText.AddScore(3);
         }
     }
 
     public void UpdateScore(int pScore = 100)
     {
         Score += pScore;
-        Debug.Log($"Score is now {Score}");
+        //Debug.Log($"Score is now {Score}");
+        if (m_scoreText != null) m_scoreText.AddScore(pScore);
     }
 
     public void UpdateHP(int pDamage = 1)

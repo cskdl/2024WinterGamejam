@@ -6,35 +6,33 @@ using UnityEngine.UI;
 
 public class ScoreText : MonoBehaviour
 {
-    int score = 10;
+    public int Score { get; private set; } = 0;
     Text ScoreT;
+
+    string highScore = "HightScore";
+    string m_scoreString = "Score";
 
     private void Awake()
     {
         ScoreT = GetComponent<Text>();
     }
-    private void AddScore()
+    public void AddScore(int pScore)
     {
-        //여의주하고 시간에 따라 스코어 증가하는 코드 작성 요망
-        Debug.Log(score);
+        //여의주하고 시간에 따라 스코어 증가하는 코드 작성 요망(20240117작성 완)
+        Score += pScore;
+        //Debug.Log(score);
         ScoreTextAcc();
 
     }
 
     private void Start()
     {
-        AddScore();
+        AddScore(0);
     }
     private void ScoreTextAcc()
     {
-        ScoreT.text = score.ToString();
+        ScoreT.text = Score.ToString();
     }
-    public int GetScore()
-    {
-        return score;
-    }
-
-    string highScore = "HightScore";
     public int GetHighScore()
     {
         int hightScore = PlayerPrefs.GetInt(highScore);
@@ -44,5 +42,6 @@ public class ScoreText : MonoBehaviour
     {
         if(cur_score > GetHighScore())
             PlayerPrefs.SetInt(highScore, cur_score);
+        PlayerPrefs.SetInt(m_scoreString, cur_score);
     }
 }

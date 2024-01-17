@@ -8,7 +8,9 @@ public class LifeSetting : MonoBehaviour
     public int playerLife = 3;
     public GameDirector gameDirector;
 
-   
+    [SerializeField] private ScoreText m_scoreText;
+
+
     void Start()
     {
         this.gameDirector.UpdateLives(this.playerLife);
@@ -31,6 +33,7 @@ public class LifeSetting : MonoBehaviour
 
         if (playerLife <= 0)
         {
+            m_scoreText.SetHightScore(m_scoreText.Score);
             SceneManager.LoadScene("ClearScene");
         }
     }

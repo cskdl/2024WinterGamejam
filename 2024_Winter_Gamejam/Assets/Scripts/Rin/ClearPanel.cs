@@ -9,6 +9,9 @@ public class ClearPanel : MonoBehaviour
     [SerializeField]
     public Text Text_clearPanel;
 
+    private string m_highScore = "HightScore";
+    private string m_scoreString = "Score";
+
     private void Awake()
     {
         transform.gameObject.SetActive(true);
@@ -19,8 +22,10 @@ public class ClearPanel : MonoBehaviour
 
         transform.gameObject.SetActive(true);
 
-        int score = FindObjectOfType<ScoreText>().GetScore();
-        int highScore = FindObjectOfType<ScoreText>().GetHighScore();
+        //int score = FindObjectOfType<ScoreText>().Score;
+        //int highScore = FindObjectOfType<ScoreText>().GetHighScore();
+        int score = PlayerPrefs.GetInt(m_scoreString);
+        int highScore = PlayerPrefs.GetInt(m_highScore);
 
         Debug.Log(score);
         Debug.Log(highScore);

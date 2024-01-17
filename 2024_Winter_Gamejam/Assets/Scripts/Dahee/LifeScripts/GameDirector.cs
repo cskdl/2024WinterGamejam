@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class GameDirector : MonoBehaviour
 {
-
     public GameObject[] lifes;
 
     public void UpdateLives(int playerLife)
@@ -23,5 +22,4 @@ public class GameDirector : MonoBehaviour
         for (int i = 0; i < playerLife; i++)
             this.lifes[i].SetActive(true);
     }
-  
 }
