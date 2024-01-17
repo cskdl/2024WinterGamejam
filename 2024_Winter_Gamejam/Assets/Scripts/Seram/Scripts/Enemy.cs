@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     SpriteRenderer spriter;
 
     float m_timer = 3;
+    float m_delay = 0;
 
     void Awake()
     {
@@ -31,16 +32,44 @@ public class Enemy : MonoBehaviour
         this.transform.position = temp;
     }
 
-    void FixedUpdate()
+    //void FixedUpdate()
+    //{
+    //    if (m_timer > 0)
+    //    {
+    //        m_timer -= Time.fixedDeltaTime;
+    //    }
+    //    else
+    //    {
+    //        if (m_delay <= 0)
+    //        {
+    //            MoveTowardsTarget();
+    //            LookAtTarget();
+    //        }
+    //        else
+    //        {
+    //            m_delay -= Time.fixedDeltaTime;
+    //        }
+    //    }
+    //}
+
+    private void Update()
     {
         if (m_timer > 0)
         {
-            m_timer -= Time.fixedDeltaTime;
+            m_timer -= Time.deltaTime;
         }
         else
         {
-            MoveTowardsTarget();
-            LookAtTarget();
+            if (m_delay <= 0)
+            {
+                MoveTowardsTarget();
+                LookAtTarget();
+            }
+            else
+            {
+                MoveBump();
+                m_delay -= Time.deltaTime;
+            }
         }
     }
 
@@ -51,7 +80,7 @@ public class Enemy : MonoBehaviour
         Vector2 nextVec = dirVec.normalized;
         //rigid.MovePosition((rigid.position + nextVec) * speed * Time.fixedDeltaTime);
         //rigid.velocity = Vector3.zero;
-        rigid.velocity = this.transform.right * speed * Time.fixedDeltaTime;
+        rigid.velocity = this.transform.right * speed * Time.deltaTime;
     }
 
     void LookAtTarget()
@@ -61,5 +90,18 @@ public class Enemy : MonoBehaviour
         float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
         //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    }
+
+    void MoveBump()
+    {
+        rigid.velocity = this.transform.right * -speed * Time.fixedDeltaTime;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            m_delay = 1;
+        }
     }
 }
