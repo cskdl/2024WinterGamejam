@@ -50,5 +50,9 @@ public class PlayerColliisionCheck : MonoBehaviour
             Destroy(collision.gameObject);
             m_ingameManager.UpdateScore();
         }
+        else if (collision.gameObject.CompareTag("bullet"))
+        {
+            m_ingameManager.UpdateHP();
+        }
     }
 }

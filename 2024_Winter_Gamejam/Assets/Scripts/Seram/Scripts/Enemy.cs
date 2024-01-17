@@ -26,10 +26,6 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        //this.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
-        //Vector3 temp = transform.position;
-        //temp.z = 10;
-        //this.transform.position = temp;
         target = GameObject.FindObjectOfType<PlayerAttack>().GetComponent<Rigidbody2D>();
     }
 
@@ -52,27 +48,6 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-
-    //private void Update()
-    //{
-    //    if (m_timer > 0)
-    //    {
-    //        m_timer -= Time.deltaTime;
-    //    }
-    //    else
-    //    {
-    //        if (m_delay <= 0)
-    //        {
-    //            MoveTowardsTarget();
-    //            LookAtTarget();
-    //        }
-    //        else
-    //        {
-    //            MoveBump();
-    //            m_delay -= Time.deltaTime;
-    //        }
-    //    }
-    //}
 
     void MoveTowardsTarget()
     {
@@ -100,6 +75,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             m_delay = 1;
+            MoveBump();
         }
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5640034721104937008}
   m_Layer: 0
   m_Name: Waterball
-  m_TagString: Untagged
+  m_TagString: BorderBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
