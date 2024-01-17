@@ -207,7 +207,7 @@ MonoBehaviour:
   m_foodPrefab: {fileID: 7376277981145661859, guid: f50db95ec472ebe4e8a4bf982c8f8831, type: 3}
   m_foodParent: {fileID: 157280196735110430}
   m_initialCount: 5
-  m_generationDistance: 3
+  m_generationDistance: 2
   m_backgroundTilemap: {fileID: 5574870490433565512}
   m_dragonballHelperPrefab: {fileID: 0}
 --- !u!1 &5574870491738093835
@@ -470,3 +470,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_scorePerSecond: 3
+  m_lifeSetting: {fileID: 0}
+  m_gameDirector: {fileID: 0}
+  m_scoreText: {fileID: 0}

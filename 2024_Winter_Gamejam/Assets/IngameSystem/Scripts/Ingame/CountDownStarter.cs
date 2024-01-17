@@ -10,7 +10,7 @@ public class CountDownStarter : MonoBehaviour
 
     private void Start()
     {
-        m_text.transform.position = Camera.main.WorldToScreenPoint(new Vector3(0, 1, 0));
+        m_text.transform.position = new Vector3(0, 1, 0);
         m_text.text = ((int)m_targetTime + 1).ToString();
     }
 

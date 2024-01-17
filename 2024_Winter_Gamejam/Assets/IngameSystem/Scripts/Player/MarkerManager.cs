@@ -27,12 +27,12 @@ public class MarkerManager : MonoBehaviour
 
     public void UpdateMarkerList()
     {
-        if (counter >= 2 || MarkerList.Count <= 0)
+        if (/*counter >= 1 || MarkerList.Count <= 0*/true)
         {
             MarkerList.Add(new Marker(transform.position, transform.rotation));
-            counter = 0;
+            //counter = 0;
         }
-        else counter++;
+        //else counter++;
     }
 
     public void ClearMarkerList()
