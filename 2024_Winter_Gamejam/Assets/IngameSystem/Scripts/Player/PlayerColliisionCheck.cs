@@ -39,7 +39,7 @@ public class PlayerColliisionCheck : MonoBehaviour
         if(collision.gameObject.tag == "DragonBall")
         {
             m_playerManager.CreateBodyParts();
-            m_foodGenerator.RemoveFood(collision.transform.position);
+            m_foodGenerator.RemoveFood(collision.gameObject);
             Destroy(collision.gameObject);
         }
         //∞≈¿« ∆Û±‚
