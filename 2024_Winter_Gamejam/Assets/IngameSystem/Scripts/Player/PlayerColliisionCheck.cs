@@ -9,6 +9,7 @@ public class PlayerColliisionCheck : MonoBehaviour
     [SerializeField] private AudioClip m_eatSound;
     [SerializeField] private AudioClip m_bumpSound;
     private FoodGenerator m_foodGenerator;
+    private TutorialFood m_tutorialFoodGenerator;
     private IngameManager m_ingameManager;
     private Collider2D m_collider;
     private Rigidbody2D m_playerRigid;
@@ -21,6 +22,7 @@ public class PlayerColliisionCheck : MonoBehaviour
         m_playerRigid = GetComponent<Rigidbody2D>();
         m_audioSource = GetComponent<AudioSource>();
 
+        m_tutorialFoodGenerator = FindObjectOfType<TutorialFood>();
         m_foodGenerator = FindObjectOfType<FoodGenerator>();
         m_ingameManager = FindObjectOfType<IngameManager>();
     }
@@ -33,14 +35,14 @@ public class PlayerColliisionCheck : MonoBehaviour
             m_playerManager.CountDown = 1;
             m_playerManager.IsCrashed = true;
 
-            m_ingameManager.UpdateHP();
+            if(m_ingameManager != null) m_ingameManager.UpdateHP();
             PlaySound(m_bumpSound);
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
             m_playerManager.CountDown = 1;
             m_playerManager.IsCrashed = true;
-            m_ingameManager.UpdateHP();
+            if (m_ingameManager != null) m_ingameManager.UpdateHP();
         }
     }
 
@@ -51,14 +53,15 @@ public class PlayerColliisionCheck : MonoBehaviour
         if(collision.gameObject.tag == "DragonBall")
         {
             m_playerManager.CreateBodyParts();
-            m_foodGenerator.RemoveFood(collision.gameObject);
+            if(m_foodGenerator != null) m_foodGenerator.RemoveFood(collision.gameObject);
+            if (m_tutorialFoodGenerator != null) m_tutorialFoodGenerator.RemoveFood(collision.gameObject);
             Destroy(collision.gameObject);
-            m_ingameManager.UpdateScore();
+            if (m_ingameManager != null) m_ingameManager.UpdateScore();
             PlaySound(m_eatSound);
         }
         else if (collision.gameObject.CompareTag("bullet"))
         {
-            m_ingameManager.UpdateHP();
+            if (m_ingameManager != null) m_ingameManager.UpdateHP();
         }
     }
 
