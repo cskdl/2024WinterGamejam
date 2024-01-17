@@ -6,7 +6,7 @@ public class EnemyTail : MonoBehaviour
 {
     public Transform EnemyTailGfx;
     public float circleDiameter;
-    public float tailSpeed; // 꼬리의 이동 속도
+    public float tailSpeed;
 
     private List<Transform> enemyTail = new List<Transform>();
     private List<Vector2> positions = new List<Vector2>();
@@ -33,6 +33,10 @@ public class EnemyTail : MonoBehaviour
         for (int i = 0; i < enemyTail.Count; i++)
         {
             enemyTail[i].position = Vector2.Lerp(positions[i + 1], positions[i], distance / circleDiameter);
+
+            Vector3 targetDir = positions[i] - (Vector2)enemyTail[i].position;
+            float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
+            enemyTail[i].rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
 
@@ -57,6 +61,10 @@ public class EnemyTail : MonoBehaviour
         for (int i = 0; i < enemyTail.Count; i++)
         {
             enemyTail[i].position = Vector2.Lerp(enemyTail[i].position, headPosition, Time.deltaTime * tailSpeed);
+
+            Vector3 targetDir = headPosition - (Vector2)enemyTail[i].position;
+            float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
+            enemyTail[i].rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
 }

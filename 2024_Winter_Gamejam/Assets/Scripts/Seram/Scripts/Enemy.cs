@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -21,9 +20,22 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
+        MoveTowardsTarget();
+        LookAtTarget();
+    }
+
+    void MoveTowardsTarget()
+    {
         Vector2 dirVec = target.position - rigid.position;
         Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
-        rigid.velocity = Vector2.zero;
+        rigid.velocity = Vector3.zero;
+    }
+
+    void LookAtTarget()
+    {
+        Vector3 targetDir = new Vector3(target.position.x, target.position.y) - transform.position;
+        float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
