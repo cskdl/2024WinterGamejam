@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 840294536818982818}
   - component: {fileID: 4726947151420436082}
   - component: {fileID: 8566364765073484409}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DragonBall
   m_TagString: DragonBall
   m_Icon: {fileID: 0}
