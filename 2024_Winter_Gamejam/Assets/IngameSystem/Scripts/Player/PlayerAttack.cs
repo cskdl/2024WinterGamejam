@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private GameObject m_fireball;
-    
+    [SerializeField] private PlayerColliisionCheck m_collisionCheck;
+    [SerializeField] private AudioClip m_AttackSound;
     [SerializeField] private float m_delay = 2;
     private float m_timer = 0;
     private GameObject[] m_fireballSets;
@@ -40,6 +41,7 @@ public class PlayerAttack : MonoBehaviour
             m_fireballSets[m_index].transform.position = this.transform.position;
             m_fireballSets[m_index].transform.rotation = this.transform.rotation;
             m_fireballSets[m_index].SetActive(true);
+            m_collisionCheck.PlaySound(m_AttackSound);
             m_timer = 0;
         }
     }

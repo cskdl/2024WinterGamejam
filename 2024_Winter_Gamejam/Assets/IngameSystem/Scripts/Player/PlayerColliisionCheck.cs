@@ -6,16 +6,20 @@ using UnityEngine;
 public class PlayerColliisionCheck : MonoBehaviour
 {
     [SerializeField] private PlayerManager m_playerManager;
+    [SerializeField] private AudioClip m_eatSound;
+    [SerializeField] private AudioClip m_bumpSound;
     private FoodGenerator m_foodGenerator;
     private IngameManager m_ingameManager;
     private Collider2D m_collider;
     private Rigidbody2D m_playerRigid;
     private bool m_isInBody = false;
+    private AudioSource m_audioSource;
 
     private void Awake()
     {
         m_collider = GetComponent<Collider2D>();
         m_playerRigid = GetComponent<Rigidbody2D>();
+        m_audioSource = GetComponent<AudioSource>();
 
         m_foodGenerator = FindObjectOfType<FoodGenerator>();
         m_ingameManager = FindObjectOfType<IngameManager>();
@@ -30,6 +34,7 @@ public class PlayerColliisionCheck : MonoBehaviour
             m_playerManager.IsCrashed = true;
 
             m_ingameManager.UpdateHP();
+            PlaySound(m_bumpSound);
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -49,10 +54,19 @@ public class PlayerColliisionCheck : MonoBehaviour
             m_foodGenerator.RemoveFood(collision.gameObject);
             Destroy(collision.gameObject);
             m_ingameManager.UpdateScore();
+            PlaySound(m_eatSound);
         }
         else if (collision.gameObject.CompareTag("bullet"))
         {
             m_ingameManager.UpdateHP();
         }
+    }
+
+    public void PlaySound(AudioClip pClip)
+    {
+        m_audioSource.Stop();
+        m_audioSource.time = 0;
+        m_audioSource.clip = pClip;
+        m_audioSource.Play();
     }
 }
