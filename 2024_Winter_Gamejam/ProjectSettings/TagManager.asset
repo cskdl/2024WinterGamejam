@@ -8,6 +8,10 @@ TagManager:
   - BorderBullet
   - bullet
   - Music
+  - Body
+  - DragonBall
+  - Wall
+  - Enemy
   layers:
   - Default
   - TransparentFX
