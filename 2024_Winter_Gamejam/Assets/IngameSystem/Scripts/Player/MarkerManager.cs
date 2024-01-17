@@ -27,7 +27,7 @@ public class MarkerManager : MonoBehaviour
 
     public void UpdateMarkerList()
     {
-        if (counter >= 4 || MarkerList.Count <= 0)
+        if (counter >= 2 || MarkerList.Count <= 0)
         {
             MarkerList.Add(new Marker(transform.position, transform.rotation));
             counter = 0;
