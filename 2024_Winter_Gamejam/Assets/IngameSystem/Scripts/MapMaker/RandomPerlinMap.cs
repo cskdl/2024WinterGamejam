@@ -24,8 +24,11 @@ public class RandomPerlinMap : MonoBehaviour
 
     public Vector3Int RecordedChunk { get; private set; }
 
-    [SerializeField] private GameObject m_player;
-    [SerializeField] private GameObject m_enemy;
+    [SerializeField] private GameObject m_playerPrefab;
+    [SerializeField] private GameObject m_enemyPrefab;
+
+    private GameObject m_player;
+    private GameObject m_enemy;
 
     private void Start()
     {
@@ -42,13 +45,17 @@ public class RandomPerlinMap : MonoBehaviour
     private void Update()
     {
         GenerateMap();
+        if (Vector3.Distance(m_player.transform.GetChild(0).position, m_enemy.transform.position) > 25)
+        {
+            SetEnemyPosition();
+        }
     }
 
     private void SetPlayer()
     {
-        if (m_player != null)
+        if (m_playerPrefab != null)
         {
-            GameObject player = Instantiate(m_player);
+            GameObject player = Instantiate(m_playerPrefab);
             int x = 0, y = 0;
             //플레이어가 벽에 부딪히면 안 되기 때문에 벽 외의 공간에 생성
             if (GetIdUsingPerlin(x, y) == 0)
@@ -75,19 +82,20 @@ public class RandomPerlinMap : MonoBehaviour
             }
             //카메라 이슈로 임시조치
             player.transform.localScale = new Vector3(1, 1, 1) * 3;
-            m_player = null;
+            m_player = player;
+            m_playerPrefab = null;
         }
     }
 
 
     private void SetEnemy()
     {
-        if (m_enemy != null)
+        if (m_enemyPrefab != null)
         {
-            GameObject enemy = Instantiate(m_enemy);
-            Vector3 playerPos = FindObjectOfType<PlayerAttack>().transform.parent.position;
-            int x = (int)playerPos.x - ChunkSize / 2;
-            int y = (int)playerPos.y - ChunkSize / 2;
+            GameObject enemy = Instantiate(m_enemyPrefab);
+            Vector3 playerPos = m_player.transform.position;
+            int x = (int)playerPos.x - (ChunkSize / 2);
+            int y = (int)playerPos.y - (ChunkSize / 2);
 
             //플레이어가 벽에 부딪히면 안 되기 때문에 벽 외의 공간에 생성
             if (GetIdUsingPerlin(x, y) == 0)
@@ -103,7 +111,32 @@ public class RandomPerlinMap : MonoBehaviour
                 enemy.transform.position = new Vector3(x, y);
             }
             //enemy.transform.localScale = new Vector3(1, 1, 1) * 3;
-            m_enemy = null;
+            m_enemy = enemy;
+            m_enemyPrefab = null;
+        }
+    }
+
+    private void SetEnemyPosition()
+    {
+        if(m_enemyPrefab != null)
+        {
+            return;
+        }
+        Debug.Log($"Distance is now {Vector3.Distance(m_player.transform.GetChild(0).position, m_enemy.transform.position)}! Reset Enemy Position");
+        Vector3 playerPos = m_player.transform.GetChild(0).position;
+        int x = (int)playerPos.x - (ChunkSize / 3);
+        int y = (int)playerPos.y - (ChunkSize / 3);
+        if (GetIdUsingPerlin(x, y) == 0)
+        {
+            m_enemy.transform.position = new Vector3(x, y);
+        }
+        else
+        {
+            while (GetIdUsingPerlin(--x, y) != 0)
+            {
+                continue;
+            }
+            m_enemy.transform.position = new Vector3(x, y);
         }
     }
 
