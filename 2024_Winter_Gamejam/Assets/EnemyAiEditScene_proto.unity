@@ -1409,6 +1409,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2846532420724259333, guid: 029e49de91eab3640ae7f0aff3c696ae, type: 3}
+      propertyPath: fireRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846532420724259333, guid: 029e49de91eab3640ae7f0aff3c696ae, type: 3}
       propertyPath: fireballPrefab
       value: 
       objectReference: {fileID: 419005991}
