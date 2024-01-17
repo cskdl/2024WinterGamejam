@@ -42,7 +42,7 @@ public class EnemyTail : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("food"))
+        if (other.gameObject.CompareTag("DragonBall"))
         {
             Destroy(other.gameObject);
             AddTail();

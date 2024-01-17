@@ -381,6 +381,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\uBA39\uC5B4 (1)"
       objectReference: {fileID: 0}
+    - target: {fileID: 536204932283377060, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
+      propertyPath: m_TagString
+      value: DragonBall
+      objectReference: {fileID: 0}
     - target: {fileID: 6125069987029547980, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -468,6 +472,18 @@ PrefabInstance:
     - target: {fileID: 3953954411884367854, guid: 01d90b8e637c1594899fbf9f78867007, type: 3}
       propertyPath: m_RootOrder
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3953954411884367854, guid: 01d90b8e637c1594899fbf9f78867007, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3953954411884367854, guid: 01d90b8e637c1594899fbf9f78867007, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3953954411884367854, guid: 01d90b8e637c1594899fbf9f78867007, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3953954411884367854, guid: 01d90b8e637c1594899fbf9f78867007, type: 3}
       propertyPath: m_LocalPosition.x
@@ -888,6 +904,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\uBA39\uC5B4 (5)"
       objectReference: {fileID: 0}
+    - target: {fileID: 536204932283377060, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
+      propertyPath: m_TagString
+      value: DragonBall
+      objectReference: {fileID: 0}
     - target: {fileID: 6125069987029547980, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -952,6 +972,10 @@ PrefabInstance:
     - target: {fileID: 536204932283377060, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
       propertyPath: m_Name
       value: "\uBA39\uC5B4 (4)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 536204932283377060, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
+      propertyPath: m_TagString
+      value: DragonBall
       objectReference: {fileID: 0}
     - target: {fileID: 6125069987029547980, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
       propertyPath: m_RootOrder
@@ -1018,6 +1042,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\uBA39\uC5B4 (3)"
       objectReference: {fileID: 0}
+    - target: {fileID: 536204932283377060, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
+      propertyPath: m_TagString
+      value: DragonBall
+      objectReference: {fileID: 0}
     - target: {fileID: 6125069987029547980, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1082,6 +1110,10 @@ PrefabInstance:
     - target: {fileID: 536204932283377060, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
       propertyPath: m_Name
       value: "\uBA39\uC5B4 (2)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 536204932283377060, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
+      propertyPath: m_TagString
+      value: DragonBall
       objectReference: {fileID: 0}
     - target: {fileID: 6125069987029547980, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
       propertyPath: m_RootOrder
@@ -1308,6 +1340,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\uBA39\uC5B4 (7)"
       objectReference: {fileID: 0}
+    - target: {fileID: 536204932283377060, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
+      propertyPath: m_TagString
+      value: DragonBall
+      objectReference: {fileID: 0}
     - target: {fileID: 6125069987029547980, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -1372,6 +1408,10 @@ PrefabInstance:
     - target: {fileID: 536204932283377060, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
       propertyPath: m_Name
       value: "\uBA39\uC5B4 (6)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 536204932283377060, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
+      propertyPath: m_TagString
+      value: DragonBall
       objectReference: {fileID: 0}
     - target: {fileID: 6125069987029547980, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
       propertyPath: m_RootOrder
@@ -1624,6 +1664,10 @@ PrefabInstance:
     - target: {fileID: 536204932283377060, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
       propertyPath: m_Name
       value: "\uBA39\uC5B4"
+      objectReference: {fileID: 0}
+    - target: {fileID: 536204932283377060, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
+      propertyPath: m_TagString
+      value: DragonBall
       objectReference: {fileID: 0}
     - target: {fileID: 5943114948287900950, guid: c82a2b383e4a6bb46b8eb1c5fe0d3872, type: 3}
       propertyPath: m_IsTrigger
