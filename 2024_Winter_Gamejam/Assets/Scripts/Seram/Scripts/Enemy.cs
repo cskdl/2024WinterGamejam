@@ -8,13 +8,12 @@ public class Enemy : MonoBehaviour
     public float speed;
     public Rigidbody2D target;
 
-    bool isLive;
-
     Rigidbody2D rigid;
     SpriteRenderer spriter;
 
     float m_timer = 3;
     float m_delay = 0;
+    private float hp = 10;
 
     void Awake()
     {
@@ -47,6 +46,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    bool IsAlive()
+    {
+        return hp > 0;
+    }
+
     void MoveTowardsTarget()
     {
         Vector2 temp = new Vector2(target.position.x, target.position.y);
@@ -74,6 +78,14 @@ public class Enemy : MonoBehaviour
         {
             m_delay = 1;
             MoveBump();
+        }
+    }
+
+    void Update()
+    {
+        if (!IsAlive())
+        {
+            Destroy(gameObject);
         }
     }
 }

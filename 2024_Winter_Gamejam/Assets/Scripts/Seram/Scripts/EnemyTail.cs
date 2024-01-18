@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class EnemyTail : MonoBehaviour
 {
     public Transform EnemyTailGfx;
     public float circleDiameter;
     public float tailSpeed;
+    public float tailIncreaseTime = 10f;
 
     private List<Transform> enemyTail = new List<Transform>();
     private List<Vector2> positions = new List<Vector2>();
@@ -15,9 +15,24 @@ public class EnemyTail : MonoBehaviour
     private void Start()
     {
         positions.Add(EnemyTailGfx.position);
+        StartCoroutine(IncreaseTailRoutine());
     }
 
     private void Update()
+    {
+        MoveTail();
+    }
+
+    IEnumerator IncreaseTailRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(tailIncreaseTime);
+            AddTail();
+        }
+    }
+
+    void MoveTail()
     {
         float distance = ((Vector2)EnemyTailGfx.position - positions[0]).magnitude;
 
