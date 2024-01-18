@@ -188,6 +188,7 @@ MonoBehaviour:
   EnemyTailGfx: {fileID: 2846532420862937708}
   circleDiameter: 0.2
   tailSpeed: 5
+  tailIncreaseTime: 10
 --- !u!114 &2846532420724259333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 6702392909663004741, guid: 01d90b8e637c1594899fbf9f78867007, type: 3}
   fireballSpeed: 10
+  initialDelay: 3
   fireRate: 0.5
 --- !u!1 &2846532420862937711
 GameObject:

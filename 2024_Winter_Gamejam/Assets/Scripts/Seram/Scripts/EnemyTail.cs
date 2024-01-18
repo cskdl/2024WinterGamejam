@@ -61,6 +61,11 @@ public class EnemyTail : MonoBehaviour
         if (other.gameObject.CompareTag("DragonBall"))
         {
             Destroy(other.gameObject);
+            var foodGenerator = FindObjectOfType<FoodGenerator>();
+            if (foodGenerator != null)
+            {
+                foodGenerator.RemoveFood();
+            }
             AddTail();
         }
     }

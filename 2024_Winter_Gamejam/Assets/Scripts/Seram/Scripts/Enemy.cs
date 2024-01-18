@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
@@ -46,6 +45,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void GetDamage(float damageAmount)
+    {
+        Debug.Log("damaged");
+        hp -= damageAmount;
+    }
+
     bool IsAlive()
     {
         return hp > 0;
@@ -78,6 +83,19 @@ public class Enemy : MonoBehaviour
         {
             m_delay = 1;
             MoveBump();
+        }
+
+       
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("BorderBullet"))
+        {
+            float damageAmount = 1;
+            Destroy(collision.gameObject);
+
+            GetDamage(damageAmount);
         }
     }
 
