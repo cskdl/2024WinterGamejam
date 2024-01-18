@@ -64,7 +64,7 @@ public class EnemyTail : MonoBehaviour
             var foodGenerator = FindObjectOfType<FoodGenerator>();
             if (foodGenerator != null)
             {
-                foodGenerator.RemoveFood();
+                foodGenerator.RemoveFood(other.gameObject);
             }
             AddTail();
         }
