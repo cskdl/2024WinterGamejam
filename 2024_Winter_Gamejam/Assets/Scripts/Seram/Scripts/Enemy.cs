@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         target = GameObject.FindObjectOfType<PlayerAttack>().GetComponent<Rigidbody2D>();
+        healthSlider = GameObject.Find("EnemyHP").GetComponent<Slider>();
     }
 
     void FixedUpdate()
@@ -63,7 +65,12 @@ public class Enemy : MonoBehaviour
     {
         if (healthSlider != null)
         {
-            healthSlider.value = currentHp / maxHp;
+            Debug.Log("여긴 들어오나??");
+            healthSlider.value = currentHp;
+            if(healthSlider.value <= 0)
+            {
+                SceneManager.LoadScene("ClearScene");
+            }
         }
     }
 
@@ -102,6 +109,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BorderBullet"))
         {
+            Debug.Log("wow");
             int damageAmount = 1;
             GetDamage(damageAmount);
         }

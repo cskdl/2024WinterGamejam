@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 220
   target: {fileID: 0}
+  healthSlider: {fileID: 5767952167789509427, guid: ebb7f6e9faaf846498009e2875781b18, type: 3}
 --- !u!50 &2846532420724259335
 Rigidbody2D:
   serializedVersion: 4
