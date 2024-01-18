@@ -118,7 +118,7 @@ public class FoodGenerator : MonoBehaviour
 
     public void RemoveFood(GameObject pFood)
     {
-        if (!m_foodPoses.Contains(pFood.transform.position))
+        if (pFood == null || !m_foodPoses.Contains(pFood.transform.position))
         {
             return;
         }
@@ -129,6 +129,15 @@ public class FoodGenerator : MonoBehaviour
 
     public void UpdateDragonballHelper()
     {
+        for(int j = 0; j < m_foods.Count; j++)
+        {
+            if (m_foods[j] == null)
+            {
+                m_foods.RemoveAt(j);
+                m_foodPoses.RemoveAt(j);
+                j--;
+            }
+        }
         int i = 0;
         for(int count = 0; count < m_dragonballHelpers.Length; count++)
         {
@@ -142,10 +151,13 @@ public class FoodGenerator : MonoBehaviour
             {
                 m_dragonballHelpers[count].gameObject.SetActive(false);
             }
-            if (m_dragonballHelpers[count].activeSelf)
-            {
-                continue;
-            }
+            //if (m_dragonballHelpers[count].activeSelf)
+            //{
+            //    //continue;
+            //    if (m_positionHelps.FirstOrDefault(n => n != null && n == m_foods[i].transform.position) != null) break;
+            //    int index = m_positionHelps.Select((n, index) => (n, index)).FirstOrDefault(n => n.n != null && n.n == m_foods[i].transform.position).index;
+            //    m_dragonballHelpers[index].gameObject.SetActive(false);
+            //}
             for (; i < m_foods.Count; i++)
             {
                 if (m_foods[i] == null)
@@ -155,8 +167,8 @@ public class FoodGenerator : MonoBehaviour
                 }
                 if (m_positionHelps.Contains(m_foods[i].transform.position))
                 {
-                    i++;
-                    break;
+                    //i++;
+                    continue;
                 }
                 if (m_foods[i] != null && !m_foods[i].activeSelf)
                 {
@@ -296,9 +308,8 @@ public class FoodGenerator : MonoBehaviour
                 else
                 {
                     //Debug.Log("¿©±â¿Í¼­ Áö¿öÁü");
-                    if (m_positionHelps.FirstOrDefault(n => n != null && n == m_foods[i].transform.position) != null) return;
+                    if (m_positionHelps.FirstOrDefault(n => n != null && n == m_foods[i].transform.position) != null) break;
                     int index = m_positionHelps.Select((n, index) => (n, index)).FirstOrDefault(n => n.n != null && n.n == m_foods[i].transform.position).index;
-                    Debug.Log("²¥¾Ç");
                     m_dragonballHelpers[index].gameObject.SetActive(false);
                 }
                 if (i >= m_foods.Count) i--;
@@ -320,11 +331,11 @@ public class FoodGenerator : MonoBehaviour
                 Vector3 pos = Camera.main.WorldToViewportPoint(m_positionHelps[count]);
                 if (pos.x < 0 || pos.x > 1 || pos.y < 0 || pos.y > 1)
                 {
-                    if (m_dragonballHelpers.FirstOrDefault(n => n != null && !n.activeSelf) == null) return;
-                    int index = GetIndexofHelper(m_dragonballHelpers.FirstOrDefault(n => !n.activeSelf));
-                    if (m_dragonballHelpers[index].activeSelf) return;
-                    if (index == -1) return;
-                    m_dragonballHelpers[count].SetActive(true);
+                    if (m_dragonballHelpers.FirstOrDefault(n => n != null && n.activeSelf) == null) return;
+                    //int index = GetIndexofHelper(m_dragonballHelpers.FirstOrDefault(n => !n.activeSelf));
+                    //if (m_dragonballHelpers[index].activeSelf) return;
+                    //if (index == -1) return;
+                    //m_dragonballHelpers[count].SetActive(true);
                     //Ä«¸Þ¶ó À§¿¡ À§Ä¡
                     if (pos.y > 1)
                     {
@@ -451,13 +462,13 @@ public class FoodGenerator : MonoBehaviour
 
     public void RemoveHelper(GameObject pTarget)
     {
-        //if (pTarget == null) return;
-        //if (m_positionHelps.FirstOrDefault(n => n != null && n == pTarget.transform.position) == null
-        //    /*&& (m_dragonballHelpers[0] == null)*/) return;
-        //int index = m_positionHelps.Select((n, index) => (n, index)).FirstOrDefault(n => n.n != null && n.n == pTarget.transform.position).index;
+        if (pTarget == null) return;
+        if (m_positionHelps.FirstOrDefault(n => n != null && n == pTarget.transform.position) == null
+            /*&& (m_dragonballHelpers[0] == null)*/) return;
+        int index = m_positionHelps.Select((n, index) => (n, index)).FirstOrDefault(n => n.n != null && n.n == pTarget.transform.position).index;
         //Debug.Log($"²¥¾Ç{index}");
-        //m_dragonballHelpers[index].gameObject.SetActive(false);
-        //UpdateDragonballHelper();
-        ////Debug.Log(m_dragonballHelpers[index].transform.position);
+        m_dragonballHelpers[index].gameObject.SetActive(false);
+        UpdateDragonballHelper();
+        //Debug.Log(m_dragonballHelpers[index].transform.position);
     }
 }
