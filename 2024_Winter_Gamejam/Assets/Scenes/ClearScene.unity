@@ -262,6 +262,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text_clearPanel: {fileID: 291666224}
+  m_endingObjs:
+  - {fileID: 1382440110}
+  - {fileID: 1503393704}
 --- !u!1 &291666222
 GameObject:
   m_ObjectHideFlags: 0

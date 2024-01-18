@@ -12,6 +12,8 @@ public class ClearPanel : MonoBehaviour
     private string m_highScore = "HightScore";
     private string m_scoreString = "Score";
 
+    [SerializeField] private GameObject[] m_endingObjs;
+
     private void Awake()
     {
         transform.gameObject.SetActive(true);
@@ -33,8 +35,14 @@ public class ClearPanel : MonoBehaviour
         Text_clearPanel.text =
             "HighScore : " + highScore.ToString() + "\n" +
             "Score : " + score.ToString();
+        ShowEnding();
 
+    }
 
+    private void ShowEnding()
+    {
+        m_endingObjs[PlayerPrefs.GetInt("Result") == 0 ? 0 : 1].SetActive(true);
+        m_endingObjs[PlayerPrefs.GetInt("Result") == 1 ? 0 : 1].SetActive(false);
     }
 
     public void Start()

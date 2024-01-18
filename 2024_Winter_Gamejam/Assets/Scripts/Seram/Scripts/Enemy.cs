@@ -65,10 +65,10 @@ public class Enemy : MonoBehaviour
     {
         if (healthSlider != null)
         {
-            Debug.Log("여긴 들어오나??");
             healthSlider.value = currentHp;
             if(healthSlider.value <= 0)
             {
+                PlayerPrefs.SetInt("Result", 0);
                 SceneManager.LoadScene("ClearScene");
             }
         }

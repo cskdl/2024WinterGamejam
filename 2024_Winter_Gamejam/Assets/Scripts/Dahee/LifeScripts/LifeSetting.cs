@@ -34,6 +34,7 @@ public class LifeSetting : MonoBehaviour
         if (playerLife <= 0)
         {
             m_scoreText.SetHightScore(m_scoreText.Score);
+            PlayerPrefs.SetInt("Result", 1);
             SceneManager.LoadScene("ClearScene");
         }
     }
