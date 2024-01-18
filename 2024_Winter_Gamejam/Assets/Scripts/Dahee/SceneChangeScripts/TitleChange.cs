@@ -16,4 +16,9 @@ public class TitleChange : MonoBehaviour
     {
         SceneManager.LoadScene("TitleScene");
     }
+
+    public void GoToTotorial()
+    {
+        SceneManager.LoadScene("TutorialTest");
+    }
 }
