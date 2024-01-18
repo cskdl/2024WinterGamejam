@@ -35,7 +35,7 @@ public class PlayerColliisionCheck : MonoBehaviour
             m_playerManager.CountDown = 1;
             m_playerManager.IsCrashed = true;
 
-            if(m_ingameManager != null) m_ingameManager.UpdateHP();
+            //if(m_ingameManager != null) m_ingameManager.UpdateHP();
             PlaySound(m_bumpSound);
         }
         if (collision.gameObject.CompareTag("Enemy"))
