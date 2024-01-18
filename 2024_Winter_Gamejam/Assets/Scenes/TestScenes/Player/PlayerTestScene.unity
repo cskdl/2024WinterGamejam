@@ -299,6 +299,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2497037880928449879, guid: bf6d94dc3d20293449abe2e439211764, type: 3}
+      propertyPath: m_dragonballHelperPrefab
+      value: 
+      objectReference: {fileID: 8364364339490859825, guid: 3b4f7a9ff337dd3498ecd37da61e41cc, type: 3}
     - target: {fileID: 5574870490546146601, guid: bf6d94dc3d20293449abe2e439211764, type: 3}
       propertyPath: m_RootOrder
       value: 1
