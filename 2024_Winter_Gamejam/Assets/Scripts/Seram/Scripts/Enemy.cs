@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,12 +11,16 @@ public class Enemy : MonoBehaviour
 
     float m_timer = 3;
     float m_delay = 0;
-    private float hp = 10;
+    private float maxHp = 10;
+    private float currentHp;
+
+    public Slider healthSlider;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
+        currentHp = maxHp;
     }
 
     private void Start()
@@ -47,13 +50,21 @@ public class Enemy : MonoBehaviour
 
     void GetDamage(float damageAmount)
     {
-        Debug.Log("damaged");
-        hp -= damageAmount;
+        currentHp -= damageAmount;
+        UpdateHealthSlider();
     }
 
     bool IsAlive()
     {
-        return hp > 0;
+        return currentHp > 0;
+    }
+
+    void UpdateHealthSlider()
+    {
+        if (healthSlider != null)
+        {
+            healthSlider.value = currentHp / maxHp;
+        }
     }
 
     void MoveTowardsTarget()
@@ -85,16 +96,13 @@ public class Enemy : MonoBehaviour
             MoveBump();
         }
 
-       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("BorderBullet"))
         {
-            float damageAmount = 1;
-            Destroy(collision.gameObject);
-
+            int damageAmount = 1;
             GetDamage(damageAmount);
         }
     }
